@@ -46,6 +46,7 @@ playground.xcworkspace
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
+
 Pods/
 
 # Carthage
@@ -64,5 +65,9 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/Preview.html
+<<<<<<< HEAD
 fastlane/screenshots
+=======
+fastlane/screenshots/**/*.png
+>>>>>>> 7d06c9069a927a14f1ce11e032800d57ee80546f
 fastlane/test_output
