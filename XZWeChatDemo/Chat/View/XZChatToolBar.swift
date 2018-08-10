@@ -41,8 +41,6 @@ class XZChatToolBar: UIView {
                 }else { // 聊天
                     textView.isHidden = false
                     btnSpeak.isHidden = true
-                    
-//                    NotificationCenter.default.post(name: NSNotification.Name.UIKeyboardWillShow , object: self, userInfo: nil)
                     textView.becomeFirstResponder()
                     
                     if textView.text.count != 0 {
@@ -141,9 +139,6 @@ class XZChatToolBar: UIView {
     }
     
     /// 输入框
-//    { (text, height) in
-//    print("用户输入的文字: ",text)
-//}
     private var textView = XZTextView(frame: .zero)
     /// 顶部试图
     private var topView = UIView()
@@ -161,8 +156,6 @@ class XZChatToolBar: UIView {
     private var barSuperView: UIView!
     /// 当前文字高度
     private var currentTextHeight: CGFloat = 0
-//    /// 用户输入文字
-//    private var textUserInput = ""
     /// normal图片
     private var btnSpeakImg: UIImage = UIImage.init(named: "compose_emotion_table_left_normal")!
     /// highlighted图片
