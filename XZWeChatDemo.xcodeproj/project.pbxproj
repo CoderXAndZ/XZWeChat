@@ -8,11 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		8413C7F9211A81F0006078C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C7F8211A81F0006078C5 /* AppDelegate.swift */; };
-		8413C7FB211A81F0006078C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C7FA211A81F0006078C5 /* ViewController.swift */; };
-		8413C7FE211A81F0006078C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8413C7FC211A81F0006078C5 /* Main.storyboard */; };
+		8413C7FB211A81F0006078C5 /* XZChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C7FA211A81F0006078C5 /* XZChatViewController.swift */; };
 		8413C800211A81F0006078C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8413C7FF211A81F0006078C5 /* Assets.xcassets */; };
-		8413C803211A81F0006078C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8413C801211A81F0006078C5 /* LaunchScreen.storyboard */; };
 		8413C80E211A81F0006078C5 /* XZWeChatDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C80D211A81F0006078C5 /* XZWeChatDemoTests.swift */; };
+		8413C819211A8A2B006078C5 /* XZChatToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C818211A8A2B006078C5 /* XZChatToolBar.swift */; };
+		8413C81A211A8A2B006078C5 /* XZChatToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C818211A8A2B006078C5 /* XZChatToolBar.swift */; };
+		8413C81C211A9449006078C5 /* XZChatToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8413C81B211A9449006078C5 /* XZChatToolBar.xib */; };
+		8413C81D211A9449006078C5 /* XZChatToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8413C81B211A9449006078C5 /* XZChatToolBar.xib */; };
+		8413C820211A9CCF006078C5 /* Pods_XZWeChatDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8413C821211A9CCF006078C5 /* Pods_XZWeChatDemo.framework */; };
+		8413C823211A9EA7006078C5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C822211A9EA7006078C5 /* UIColor+Extension.swift */; };
+		8413C824211A9EA7006078C5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C822211A9EA7006078C5 /* UIColor+Extension.swift */; };
+		8413C826211A9FC9006078C5 /* XZKeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C825211A9FC9006078C5 /* XZKeyboardInputView.swift */; };
+		8413C827211A9FC9006078C5 /* XZKeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C825211A9FC9006078C5 /* XZKeyboardInputView.swift */; };
+		8413C82E211ABA05006078C5 /* XZButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C82D211ABA05006078C5 /* XZButton.swift */; };
+		8413C82F211ABA05006078C5 /* XZButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C82D211ABA05006078C5 /* XZButton.swift */; };
+		8413C832211ADD4D006078C5 /* XZCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C831211ADD4D006078C5 /* XZCommon.swift */; };
+		8413C833211ADD4D006078C5 /* XZCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C831211ADD4D006078C5 /* XZCommon.swift */; };
+		8413C838211AE4CD006078C5 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C837211AE4CD006078C5 /* UIImage+Extension.swift */; };
+		8413C839211AE4CD006078C5 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C837211AE4CD006078C5 /* UIImage+Extension.swift */; };
+		84310341211C281500E1FE29 /* XZTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84310340211C281500E1FE29 /* XZTextView.swift */; };
+		84310342211C281500E1FE29 /* XZTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84310340211C281500E1FE29 /* XZTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +41,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		120D541ABCB32DA998D6B28F /* Pods-XZWeChatDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZWeChatDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XZWeChatDemo/Pods-XZWeChatDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		23603176FC6AD45AA6475B70 /* Pods_XZWeChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XZWeChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8413C7F5211A81F0006078C5 /* XZWeChatDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XZWeChatDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8413C7F8211A81F0006078C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8413C7FA211A81F0006078C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8413C7FD211A81F0006078C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8413C7FA211A81F0006078C5 /* XZChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZChatViewController.swift; sourceTree = "<group>"; };
 		8413C7FF211A81F0006078C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8413C802211A81F0006078C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8413C804211A81F0006078C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8413C809211A81F0006078C5 /* XZWeChatDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XZWeChatDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8413C80D211A81F0006078C5 /* XZWeChatDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZWeChatDemoTests.swift; sourceTree = "<group>"; };
 		8413C80F211A81F0006078C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8413C818211A8A2B006078C5 /* XZChatToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZChatToolBar.swift; sourceTree = "<group>"; };
+		8413C81B211A9449006078C5 /* XZChatToolBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XZChatToolBar.xib; sourceTree = "<group>"; };
+		8413C81F211A9A4B006078C5 /* Pods_XZWeChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_XZWeChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8413C821211A9CCF006078C5 /* Pods_XZWeChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_XZWeChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8413C822211A9EA7006078C5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		8413C825211A9FC9006078C5 /* XZKeyboardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZKeyboardInputView.swift; sourceTree = "<group>"; };
+		8413C82D211ABA05006078C5 /* XZButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZButton.swift; sourceTree = "<group>"; };
+		8413C831211ADD4D006078C5 /* XZCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZCommon.swift; sourceTree = "<group>"; };
+		8413C837211AE4CD006078C5 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		84310340211C281500E1FE29 /* XZTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XZTextView.swift; sourceTree = "<group>"; };
+		B45382C2838A45303A667175 /* Pods-XZWeChatDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZWeChatDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XZWeChatDemo/Pods-XZWeChatDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8413C820211A9CCF006078C5 /* Pods_XZWeChatDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +89,8 @@
 				8413C7F7211A81F0006078C5 /* XZWeChatDemo */,
 				8413C80C211A81F0006078C5 /* XZWeChatDemoTests */,
 				8413C7F6211A81F0006078C5 /* Products */,
+				A1774DF41DA459CAFB2A88DD /* Pods */,
+				96501EA03481C5A1C5442DAD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,11 +106,10 @@
 		8413C7F7211A81F0006078C5 /* XZWeChatDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8413C829211AA043006078C5 /* Chat */,
+				8413C828211AA00F006078C5 /* Categories */,
 				8413C7F8211A81F0006078C5 /* AppDelegate.swift */,
-				8413C7FA211A81F0006078C5 /* ViewController.swift */,
-				8413C7FC211A81F0006078C5 /* Main.storyboard */,
 				8413C7FF211A81F0006078C5 /* Assets.xcassets */,
-				8413C801211A81F0006078C5 /* LaunchScreen.storyboard */,
 				8413C804211A81F0006078C5 /* Info.plist */,
 			);
 			path = XZWeChatDemo;
@@ -96,6 +124,80 @@
 			path = XZWeChatDemoTests;
 			sourceTree = "<group>";
 		};
+		8413C828211AA00F006078C5 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				8413C837211AE4CD006078C5 /* UIImage+Extension.swift */,
+				8413C822211A9EA7006078C5 /* UIColor+Extension.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		8413C829211AA043006078C5 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				8413C830211ADD2B006078C5 /* Tool */,
+				8413C82C211AA05D006078C5 /* Controller */,
+				8413C82B211AA058006078C5 /* Model */,
+				8413C82A211AA050006078C5 /* View */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		8413C82A211AA050006078C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8413C81B211A9449006078C5 /* XZChatToolBar.xib */,
+				8413C818211A8A2B006078C5 /* XZChatToolBar.swift */,
+				8413C825211A9FC9006078C5 /* XZKeyboardInputView.swift */,
+				8413C82D211ABA05006078C5 /* XZButton.swift */,
+				84310340211C281500E1FE29 /* XZTextView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8413C82B211AA058006078C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8413C82C211AA05D006078C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8413C7FA211A81F0006078C5 /* XZChatViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8413C830211ADD2B006078C5 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				8413C831211ADD4D006078C5 /* XZCommon.swift */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		96501EA03481C5A1C5442DAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8413C821211A9CCF006078C5 /* Pods_XZWeChatDemo.framework */,
+				8413C81F211A9A4B006078C5 /* Pods_XZWeChatDemo.framework */,
+				23603176FC6AD45AA6475B70 /* Pods_XZWeChatDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A1774DF41DA459CAFB2A88DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				120D541ABCB32DA998D6B28F /* Pods-XZWeChatDemo.debug.xcconfig */,
+				B45382C2838A45303A667175 /* Pods-XZWeChatDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8413C812211A81F0006078C5 /* Build configuration list for PBXNativeTarget "XZWeChatDemo" */;
 			buildPhases = (
+				7E03B80867B3D3EDB3F92289 /* [CP] Check Pods Manifest.lock */,
 				8413C7F1211A81F0006078C5 /* Sources */,
 				8413C7F2211A81F0006078C5 /* Frameworks */,
 				8413C7F3211A81F0006078C5 /* Resources */,
+				DA6703EEB3C21EEF1BFC5DBF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,9 +283,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8413C803211A81F0006078C5 /* LaunchScreen.storyboard in Resources */,
 				8413C800211A81F0006078C5 /* Assets.xcassets in Resources */,
-				8413C7FE211A81F0006078C5 /* Main.storyboard in Resources */,
+				8413C81C211A9449006078C5 /* XZChatToolBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,18 +292,65 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8413C81D211A9449006078C5 /* XZChatToolBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7E03B80867B3D3EDB3F92289 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XZWeChatDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA6703EEB3C21EEF1BFC5DBF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-XZWeChatDemo/Pods-XZWeChatDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XZWeChatDemo/Pods-XZWeChatDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8413C7F1211A81F0006078C5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8413C7FB211A81F0006078C5 /* ViewController.swift in Sources */,
+				8413C7FB211A81F0006078C5 /* XZChatViewController.swift in Sources */,
+				8413C819211A8A2B006078C5 /* XZChatToolBar.swift in Sources */,
 				8413C7F9211A81F0006078C5 /* AppDelegate.swift in Sources */,
+				8413C838211AE4CD006078C5 /* UIImage+Extension.swift in Sources */,
+				8413C826211A9FC9006078C5 /* XZKeyboardInputView.swift in Sources */,
+				8413C823211A9EA7006078C5 /* UIColor+Extension.swift in Sources */,
+				84310341211C281500E1FE29 /* XZTextView.swift in Sources */,
+				8413C832211ADD4D006078C5 /* XZCommon.swift in Sources */,
+				8413C82E211ABA05006078C5 /* XZButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +358,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8413C824211A9EA7006078C5 /* UIColor+Extension.swift in Sources */,
+				8413C839211AE4CD006078C5 /* UIImage+Extension.swift in Sources */,
 				8413C80E211A81F0006078C5 /* XZWeChatDemoTests.swift in Sources */,
+				8413C82F211ABA05006078C5 /* XZButton.swift in Sources */,
+				8413C827211A9FC9006078C5 /* XZKeyboardInputView.swift in Sources */,
+				84310342211C281500E1FE29 /* XZTextView.swift in Sources */,
+				8413C81A211A8A2B006078C5 /* XZChatToolBar.swift in Sources */,
+				8413C833211ADD4D006078C5 /* XZCommon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,25 +378,6 @@
 			targetProxy = 8413C80A211A81F0006078C5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		8413C7FC211A81F0006078C5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8413C7FD211A81F0006078C5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8413C801211A81F0006078C5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8413C802211A81F0006078C5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8413C810211A81F0006078C5 /* Debug */ = {
@@ -351,31 +489,37 @@
 		};
 		8413C813211A81F0006078C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 120D541ABCB32DA998D6B28F /* Pods-XZWeChatDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM8C4U4YF7;
 				INFOPLIST_FILE = XZWeChatDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XZ.XZWeChatDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		8413C814211A81F0006078C5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B45382C2838A45303A667175 /* Pods-XZWeChatDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM8C4U4YF7;
 				INFOPLIST_FILE = XZWeChatDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.XZ.XZWeChatDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
