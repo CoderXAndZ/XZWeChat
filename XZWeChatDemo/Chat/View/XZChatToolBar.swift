@@ -10,7 +10,13 @@ import UIKit
 import SnapKit
 
 @objc protocol XZChatToolBarDelegate: NSObjectProtocol {
-    func chatToolBarDidSelectedBtn(btnTag: Int)
+    /// 用户点击按钮
+    func chatToolBarDidSelectedBtn(btnTag: Int,text: String)
+    /// 监听键盘通知，回调给控制器
+    func xz_keyboardWillChange(noti:Notification)
+    /// 修改 toolBar 回调高度
+    func xz_toolBarChangeHeight(height: CGFloat)
+    
 }
 
 class XZChatToolBar: UIView {
@@ -19,7 +25,33 @@ class XZChatToolBar: UIView {
     
     /// 开启时间计时器
     @objc func timerReduceOneSecond() {
+        let showCounting = shouldShowCounting()
         
+        if totoalSecond == 0 { // 60秒倒计时结束,结束录音
+            endedRecord = true // 结束录制
+            setBtnSpeakHighlighted(value: 3)
+            voiceProgress.hiddenProgress = true
+            // 停止时间计时器
+            stopTimer()
+            // 结束录音,回调录音结果
+            stopRecordAndCallback()
+            return
+        }else if showCounting { // 倒计时
+            currentState = XZVoiceRecordState.recordCounting
+            voiceProgress.time = "\(totoalSecond)"
+            
+            if canceled { // 当前拖拽到 按钮 外
+                voiceProgress.voiceRecordState = XZVoiceRecordState.releaseToCancel
+            }else {
+                voiceProgress.voiceRecordState = currentState
+            }
+        }else { // 正常显示声音
+            if currentState != XZVoiceRecordState.releaseToCancel {
+                // ==========
+//                voiceProgress.progress = XZVoiceRecorderManager.sharedManager.powerChanged
+            }
+        }
+        totoalSecond = totoalSecond - 1
     }
     
     /// 点击’转人工‘
@@ -55,15 +87,14 @@ class XZChatToolBar: UIView {
             case 121: // 转人工
                 btnTurnArtifical.isHidden = true
                 btnVoice.isHidden = false
-                keyboardInputView.isRobot = false
                 
-                // =====
-                
+                delegate?.chatToolBarDidSelectedBtn(btnTag: button.tag,text: "")
                 break
             case 122: // + 按钮
                 button.isSelected = !button.isSelected
                 
                 textView.resignFirstResponder()
+                
                 // 显示输入框
                 if textView.isHidden == true {
                     textView.isHidden = false
@@ -74,8 +105,7 @@ class XZChatToolBar: UIView {
                 makeKeyboardInputViewConstraints(hidden: button.isSelected ? true : false)
                 break
             case 123: // ’发送‘按钮
-                // ===== 回调
-                
+                delegate?.chatToolBarDidSelectedBtn(btnTag: button.tag, text: textView.text)
                 // 清空输入框
                 textView.text = ""
 //                textUserInput = ""
@@ -94,21 +124,73 @@ class XZChatToolBar: UIView {
     
     /// 结束录音
     @objc func speakerTouchUpInside() {
+        if endedRecord {
+            return
+        }
         
+        endedRecord = true
+        stopRecordAndCallback()
     }
     
     @objc func speakerTouchUpOutside() {
+        if endedRecord { // 60s结束录制
+            return
+        }
         
+        // 取消
+        stopTimer()
+        
+        // ======
+        
+        currentState = XZVoiceRecordState.normal
+        updateButtonState(state: currentState)
     }
     
     /// 录制过程中拖拽
     @objc func touchDragInsideWithEvent(button:UIButton,event:UIEvent) {
-    
+        
+        if endedRecord {
+            return
+        }
+        
+        guard let touch = event.allTouches?.first else {
+            return
+        }
+        let point = touch.location(in: btnSpeak)
+        // 判断当前触摸点是否在 button 的 bounds 范围内
+        let isInside:Bool = btnSpeak.bounds.contains(point)
+        
+        if isInside { // 按钮内
+            canceled = false
+            
+            if shouldShowCounting() { // 显示倒计时
+               currentState = XZVoiceRecordState.recordCounting
+            }else {
+                currentState = XZVoiceRecordState.recording
+            }
+        }else { // 按钮外
+            currentState = XZVoiceRecordState.releaseToCancel
+            canceled = true
+        }
+        
+        updateButtonState(state: currentState)
     }
     
-    /// 接收通知
-    @objc func getKeyBoardNotofication() {
-        
+    /// 转人工
+    var transferSuccessed: Bool = false {
+        didSet {
+            if transferSuccessed { // 成功
+                btnTurnArtifical.isHidden = true
+                btnVoice.isHidden = false
+                // 设置是跟机器人聊天还是跟客服聊天
+                keyboardInputView.isRobot = false
+            }else { // 失败
+                btnTurnArtifical.isHidden = false
+                btnVoice.isHidden = true
+                // 设置是跟机器人聊天还是跟客服聊天
+                keyboardInputView.isRobot = true
+            }
+        }
     }
     
     init(frame: CGRect, barSuperView: UIView) {
@@ -122,20 +204,15 @@ class XZChatToolBar: UIView {
         
         setupChatToolBar()
         monitorKeyboard()
-        
-//        addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(handleTap(sender:))))
-        
     }
-    
-//    @objc func handleTap(sender: UITapGestureRecognizer) {
-//        if sender.state == .ended {
-//            textView.resignFirstResponder()
-//        }
-//        sender.cancelsTouchesInView = false
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        // 注销通知
+        NotificationCenter.default.removeObserver(self)
     }
     
     /// 输入框
@@ -162,10 +239,19 @@ class XZChatToolBar: UIView {
     private var highlightedImage: UIImage = UIImage.init(named: "compose_emotion_table_left_selected")!
     
     /// 60s 倒计时
-    private lazy var timerReduce = Timer(timeInterval: minRecordDuration, target: self, selector: #selector(timerReduceOneSecond), userInfo: nil, repeats: true)
+    private var timerReduce: Timer?
+    // 倒计时
+    private var totoalSecond: Int = 0
+    // 取消录制
+    private var canceled: Bool = false
+    // 结束录制
+    private var endedRecord: Bool = false
+    // 当前状态
+    private var currentState = XZVoiceRecordState.normal
     /// 底部 + 视图
-    private var keyboardInputView = XZKeyboardInputView(frame: CGRect.zero)
-
+    var keyboardInputView = XZKeyboardInputView(frame: CGRect.zero)
+    /// 录音提示页面
+    private var voiceProgress = XZVoiceProgress(frame: CGRect(x: 0, y: 0, width: 155, height: 155))
     private let toolBarBtnH: CGFloat = 35.0 // 顶部工具栏按钮和输入框初始高度
     private let toolBarBottom: CGFloat = 100.0 // 底部视图
     private let btnSpeakLeftX: CGFloat = 55.0 // 按住说话左边距
@@ -174,14 +260,45 @@ class XZChatToolBar: UIView {
     private let remainCountingDuration = 10 // 剩余多少秒开始倒计时
 }
 
-/// XZKeyboardInputViewDelegate
-extension XZChatToolBar: XZKeyboardInputViewDelegate {
-    func keyboardInputViewDidSelectedBtn(btnTag: Int) {
-        print("选中按钮的tag: ",btnTag)
+// MARK: - 录音
+extension XZChatToolBar {
+    
+    /// 停止录制并回调
+    func stopRecordAndCallback() {
+        
     }
+    
 }
 
-/// 监听键盘通知
+// MARK: - 时间计时器
+extension XZChatToolBar {
+    /// 是否倒计时
+    func shouldShowCounting() -> Bool {
+        if totoalSecond <= remainCountingDuration && totoalSecond > 0 && currentState != XZVoiceRecordState.releaseToCancel {
+           return true
+        }
+        return false
+    }
+   
+    func startTimer() {
+        timerReduce = Timer(timeInterval: minRecordDuration, target: self, selector: #selector(timerReduceOneSecond), userInfo: nil, repeats: true)
+    }
+    
+    /// 关闭计时器
+    func stopTimer() {
+        if timerReduce != nil {
+            timerReduce?.invalidate()
+            timerReduce = nil
+        }
+        
+        totoalSecond = maxRecordDuration
+        canceled = false
+        endedRecord = false
+    }
+    
+}
+
+// MARK: - 监听键盘通知
 extension XZChatToolBar {
     func monitorKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name:NSNotification.Name.UIKeyboardWillShow , object: nil)
@@ -201,21 +318,22 @@ extension XZChatToolBar {
         
         let height = keyboardRect.size.height
         
-        
         // 隐藏底部视图
         makeKeyboardInputViewConstraints(hidden: false)
         
-        print("self?.barSuperView :", barSuperView)
-        self.snp.remakeConstraints({[weak self] (make) in
-            make.left.right.equalTo((self?.barSuperView)!)
-            make.bottom.equalTo((self?.barSuperView)!).offset(-height)
-            make.height.equalTo(XZCommon.xz_chatToolBarHeight)
-        })
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
+            self.snp.remakeConstraints({[weak self] (make) in
+                make.left.right.equalTo((self?.barSuperView)!)
+                make.bottom.equalTo((self?.barSuperView)!).offset(-height)
+                make.height.equalTo(XZCommon.xz_chatToolBarHeight)
+            })
+        }
         
-//        UIView.animate(withDuration: 0.25) {
-//            self.layoutIfNeeded()
-//        }
-//        }
+        delegate?.xz_keyboardWillChange(noti: aNotification)
+        
+        // 发送和+按钮的 隐藏 和 显示
+        self.btnSendMsg.isHidden = (textView.text.count > 0) ? false : true
+        self.btnContactAdd.isHidden = (textView.text.count  > 0) ? true : false
     }
     
     /// 键盘退出时调用
@@ -224,8 +342,8 @@ extension XZChatToolBar {
             make.left.bottom.right.equalTo(barSuperView)
             make.height.equalTo(XZCommon.xz_chatToolBarHeight)
         }
-        
-        // ========
+       
+        delegate?.xz_keyboardWillChange(noti: aNotification)
     }
     
     // topView高度
@@ -260,7 +378,8 @@ extension XZChatToolBar {
                 make.height.equalTo((height + toolBarBottom))
             })
             
-            // ====== 将toolbar的高度传递给控制器，修改tableView
+            // 将toolbar的高度传递给控制器，修改tableView
+            delegate?.xz_toolBarChangeHeight(height: height + 100)
             
         }else { // 隐藏工具栏底部视图
             topView.snp.remakeConstraints({ (make) in
@@ -281,14 +400,67 @@ extension XZChatToolBar {
             // 将加号选中状态还原
             btnContactAdd.isSelected = false
             
-            // ===== 将toolbar的高度传递给控制器，修改tableView
+            // 将toolbar的高度传递给控制器，修改tableView
+            delegate?.xz_toolBarChangeHeight(height: height)
         }
     }
 }
 
-// 设置页面
+// MARK: - 设置页面
 extension XZChatToolBar {
     
+    /// 更新按钮状态
+    func updateButtonState(state: XZVoiceRecordState) {
+        if state == XZVoiceRecordState.normal {
+            
+            setBtnSpeakHighlighted(value: 2)
+            voiceProgress.hiddenProgress = true
+            
+        }else if state == XZVoiceRecordState.recording {  // 正在录音
+            
+            voiceProgress.hiddenProgress = false
+            voiceProgress.voiceRecordState = state
+            setBtnSpeakHighlighted(value: 1)
+            
+        }else if state == XZVoiceRecordState.releaseToCancel { // 取消发送
+            
+            setBtnSpeakHighlighted(value: 1)
+            voiceProgress.hiddenProgress = false
+            voiceProgress.voiceRecordState = state
+            
+        }else if state == XZVoiceRecordState.recordCounting { // 倒计时
+            
+            setBtnSpeakHighlighted(value: 1)
+            voiceProgress.hiddenProgress = false
+            voiceProgress.time = "\(totoalSecond)"
+            voiceProgress.voiceRecordState = state
+            
+        }else if state == XZVoiceRecordState.recordTooShort { // 时间太短
+            
+            voiceProgress.hiddenProgress = false
+            voiceProgress.voiceRecordState = state
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2, execute: {
+                self.voiceProgress.hiddenProgress = true
+            })
+        }
+    }
+    
+    /// 设置button的高亮 === YES 高亮 NO 不高亮
+    func setBtnSpeakHighlighted(value: Int) {
+        if value == 1 { // 1 长按状态
+            btnSpeak.setBackgroundImage(highlightedImage, for: .normal)
+            btnSpeak.setTitle("松开 结束", for: .normal)
+        }else if value == 2 {  // 2 正常状态
+            btnSpeak.setBackgroundImage(btnSpeakImg, for: .normal)
+            btnSpeak.setTitle("按住 说话", for: .normal)
+        }else { // 3 高亮状态
+            btnSpeak.setBackgroundImage(btnSpeakImg, for: .highlighted)
+            btnSpeak.setTitle("按住 说话", for: .highlighted)
+        }
+    }
+    
+    /// 设置页面
     func setupChatToolBar() {
         backgroundColor = UIColor.white
         
@@ -305,7 +477,7 @@ extension XZChatToolBar {
         addSubview(keyboardInputView)
         keyboardInputView.isRobot = true
         keyboardInputView.backgroundColor = UIColor.orange
-        keyboardInputView.delegate = self
+//        keyboardInputView.delegate = self
         
         // 转人工
         topView.addSubview(btnTurnArtifical)
@@ -373,11 +545,13 @@ extension XZChatToolBar {
             self.btnSendMsg.isHidden = (text.count > 0) ? false : true
             self.btnContactAdd.isHidden = (text.count  > 0) ? true : false
             
+            print("text.count",text.count)
+            
             if self.currentTextHeight != height {
                 // 记录当前高度
                 self.currentTextHeight = height
                 // 将 toolBar 的高度传递给控制器，修改 tableView
-                // =======
+                self.delegate?.xz_toolBarChangeHeight(height: self.toolBar_height)
             }
         }
         
@@ -399,10 +573,13 @@ extension XZChatToolBar {
         btnSendMsg.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
         btnSendMsg.addTarget(self, action: #selector(didClickVoiceButton), for: .touchUpInside)
         
+        voiceProgress.center = CGPoint(x: barSuperView.center.x, y: barSuperView.center.y)
+        voiceProgress.hiddenProgress = true
+        
         setupConstraints()
     }
     
-    // 设置布局
+    /// 设置布局
     func setupConstraints() {
         // 顶部工具栏
         topView.snp.makeConstraints { (make) in

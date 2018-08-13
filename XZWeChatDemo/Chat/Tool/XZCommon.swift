@@ -15,4 +15,8 @@ class XZCommon {
     public static let xz_screenHeight: CGFloat = UIScreen.main.bounds.height
     /// 聊天界面工具栏高度
     public static let xz_chatToolBarHeight: CGFloat = 55
+    /// 文件路径
+    public static let xz_documentPath = "Chat/document"
+    /// 录制音频 - 存储位置
+    public static let xz_recorderPath = "Chat/Recorder"
 }

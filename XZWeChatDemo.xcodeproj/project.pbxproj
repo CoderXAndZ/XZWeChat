@@ -13,8 +13,6 @@
 		8413C80E211A81F0006078C5 /* XZWeChatDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C80D211A81F0006078C5 /* XZWeChatDemoTests.swift */; };
 		8413C819211A8A2B006078C5 /* XZChatToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C818211A8A2B006078C5 /* XZChatToolBar.swift */; };
 		8413C81A211A8A2B006078C5 /* XZChatToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C818211A8A2B006078C5 /* XZChatToolBar.swift */; };
-		8413C81C211A9449006078C5 /* XZChatToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8413C81B211A9449006078C5 /* XZChatToolBar.xib */; };
-		8413C81D211A9449006078C5 /* XZChatToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8413C81B211A9449006078C5 /* XZChatToolBar.xib */; };
 		8413C820211A9CCF006078C5 /* Pods_XZWeChatDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8413C821211A9CCF006078C5 /* Pods_XZWeChatDemo.framework */; };
 		8413C823211A9EA7006078C5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C822211A9EA7006078C5 /* UIColor+Extension.swift */; };
 		8413C824211A9EA7006078C5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C822211A9EA7006078C5 /* UIColor+Extension.swift */; };
@@ -28,6 +26,20 @@
 		8413C839211AE4CD006078C5 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C837211AE4CD006078C5 /* UIImage+Extension.swift */; };
 		84310341211C281500E1FE29 /* XZTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84310340211C281500E1FE29 /* XZTextView.swift */; };
 		84310342211C281500E1FE29 /* XZTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84310340211C281500E1FE29 /* XZTextView.swift */; };
+		84DADC3121213376005BCAD8 /* XZVoiceProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3021213376005BCAD8 /* XZVoiceProgress.swift */; };
+		84DADC3221213376005BCAD8 /* XZVoiceProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3021213376005BCAD8 /* XZVoiceProgress.swift */; };
+		84DADC3421216D8C005BCAD8 /* XZDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3321216D8C005BCAD8 /* XZDownloadManager.swift */; };
+		84DADC3521216D8C005BCAD8 /* XZDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3321216D8C005BCAD8 /* XZDownloadManager.swift */; };
+		84DADC3721216ECD005BCAD8 /* XZFileTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3621216ECD005BCAD8 /* XZFileTools.swift */; };
+		84DADC3821216ECD005BCAD8 /* XZFileTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3621216ECD005BCAD8 /* XZFileTools.swift */; };
+		84DADC3A21216EF0005BCAD8 /* XZTakePictureTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3921216EF0005BCAD8 /* XZTakePictureTools.swift */; };
+		84DADC3B21216EF0005BCAD8 /* XZTakePictureTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3921216EF0005BCAD8 /* XZTakePictureTools.swift */; };
+		84DADC3D21216F18005BCAD8 /* XZVoicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3C21216F18005BCAD8 /* XZVoicePlayer.swift */; };
+		84DADC3E21216F18005BCAD8 /* XZVoicePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3C21216F18005BCAD8 /* XZVoicePlayer.swift */; };
+		84DADC4021216F34005BCAD8 /* XZVoiceRecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3F21216F34005BCAD8 /* XZVoiceRecorderManager.swift */; };
+		84DADC4121216F34005BCAD8 /* XZVoiceRecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3F21216F34005BCAD8 /* XZVoiceRecorderManager.swift */; };
+		84DADC4321217CAA005BCAD8 /* XZMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC4221217CAA005BCAD8 /* XZMediaModel.swift */; };
+		84DADC4421217CAA005BCAD8 /* XZMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC4221217CAA005BCAD8 /* XZMediaModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +64,6 @@
 		8413C80D211A81F0006078C5 /* XZWeChatDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZWeChatDemoTests.swift; sourceTree = "<group>"; };
 		8413C80F211A81F0006078C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8413C818211A8A2B006078C5 /* XZChatToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZChatToolBar.swift; sourceTree = "<group>"; };
-		8413C81B211A9449006078C5 /* XZChatToolBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = XZChatToolBar.xib; sourceTree = "<group>"; };
 		8413C81F211A9A4B006078C5 /* Pods_XZWeChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_XZWeChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8413C821211A9CCF006078C5 /* Pods_XZWeChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_XZWeChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8413C822211A9EA7006078C5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -61,6 +72,13 @@
 		8413C831211ADD4D006078C5 /* XZCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZCommon.swift; sourceTree = "<group>"; };
 		8413C837211AE4CD006078C5 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		84310340211C281500E1FE29 /* XZTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XZTextView.swift; sourceTree = "<group>"; };
+		84DADC3021213376005BCAD8 /* XZVoiceProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZVoiceProgress.swift; sourceTree = "<group>"; };
+		84DADC3321216D8C005BCAD8 /* XZDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZDownloadManager.swift; sourceTree = "<group>"; };
+		84DADC3621216ECD005BCAD8 /* XZFileTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZFileTools.swift; sourceTree = "<group>"; };
+		84DADC3921216EF0005BCAD8 /* XZTakePictureTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZTakePictureTools.swift; sourceTree = "<group>"; };
+		84DADC3C21216F18005BCAD8 /* XZVoicePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZVoicePlayer.swift; sourceTree = "<group>"; };
+		84DADC3F21216F34005BCAD8 /* XZVoiceRecorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZVoiceRecorderManager.swift; sourceTree = "<group>"; };
+		84DADC4221217CAA005BCAD8 /* XZMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZMediaModel.swift; sourceTree = "<group>"; };
 		B45382C2838A45303A667175 /* Pods-XZWeChatDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XZWeChatDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-XZWeChatDemo/Pods-XZWeChatDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,8 +165,8 @@
 		8413C82A211AA050006078C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8413C81B211A9449006078C5 /* XZChatToolBar.xib */,
 				8413C818211A8A2B006078C5 /* XZChatToolBar.swift */,
+				84DADC3021213376005BCAD8 /* XZVoiceProgress.swift */,
 				8413C825211A9FC9006078C5 /* XZKeyboardInputView.swift */,
 				8413C82D211ABA05006078C5 /* XZButton.swift */,
 				84310340211C281500E1FE29 /* XZTextView.swift */,
@@ -159,6 +177,7 @@
 		8413C82B211AA058006078C5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84DADC4221217CAA005BCAD8 /* XZMediaModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -175,6 +194,11 @@
 			isa = PBXGroup;
 			children = (
 				8413C831211ADD4D006078C5 /* XZCommon.swift */,
+				84DADC3621216ECD005BCAD8 /* XZFileTools.swift */,
+				84DADC3C21216F18005BCAD8 /* XZVoicePlayer.swift */,
+				84DADC3921216EF0005BCAD8 /* XZTakePictureTools.swift */,
+				84DADC3321216D8C005BCAD8 /* XZDownloadManager.swift */,
+				84DADC3F21216F34005BCAD8 /* XZVoiceRecorderManager.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -284,7 +308,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8413C800211A81F0006078C5 /* Assets.xcassets in Resources */,
-				8413C81C211A9449006078C5 /* XZChatToolBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +315,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8413C81D211A9449006078C5 /* XZChatToolBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,12 +364,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DADC4321217CAA005BCAD8 /* XZMediaModel.swift in Sources */,
 				8413C7FB211A81F0006078C5 /* XZChatViewController.swift in Sources */,
+				84DADC4021216F34005BCAD8 /* XZVoiceRecorderManager.swift in Sources */,
+				84DADC3D21216F18005BCAD8 /* XZVoicePlayer.swift in Sources */,
 				8413C819211A8A2B006078C5 /* XZChatToolBar.swift in Sources */,
+				84DADC3421216D8C005BCAD8 /* XZDownloadManager.swift in Sources */,
+				84DADC3721216ECD005BCAD8 /* XZFileTools.swift in Sources */,
 				8413C7F9211A81F0006078C5 /* AppDelegate.swift in Sources */,
+				84DADC3121213376005BCAD8 /* XZVoiceProgress.swift in Sources */,
 				8413C838211AE4CD006078C5 /* UIImage+Extension.swift in Sources */,
 				8413C826211A9FC9006078C5 /* XZKeyboardInputView.swift in Sources */,
 				8413C823211A9EA7006078C5 /* UIColor+Extension.swift in Sources */,
+				84DADC3A21216EF0005BCAD8 /* XZTakePictureTools.swift in Sources */,
 				84310341211C281500E1FE29 /* XZTextView.swift in Sources */,
 				8413C832211ADD4D006078C5 /* XZCommon.swift in Sources */,
 				8413C82E211ABA05006078C5 /* XZButton.swift in Sources */,
@@ -361,11 +390,18 @@
 				8413C824211A9EA7006078C5 /* UIColor+Extension.swift in Sources */,
 				8413C839211AE4CD006078C5 /* UIImage+Extension.swift in Sources */,
 				8413C80E211A81F0006078C5 /* XZWeChatDemoTests.swift in Sources */,
+				84DADC3221213376005BCAD8 /* XZVoiceProgress.swift in Sources */,
 				8413C82F211ABA05006078C5 /* XZButton.swift in Sources */,
 				8413C827211A9FC9006078C5 /* XZKeyboardInputView.swift in Sources */,
 				84310342211C281500E1FE29 /* XZTextView.swift in Sources */,
+				84DADC4421217CAA005BCAD8 /* XZMediaModel.swift in Sources */,
+				84DADC3B21216EF0005BCAD8 /* XZTakePictureTools.swift in Sources */,
+				84DADC3521216D8C005BCAD8 /* XZDownloadManager.swift in Sources */,
+				84DADC3821216ECD005BCAD8 /* XZFileTools.swift in Sources */,
 				8413C81A211A8A2B006078C5 /* XZChatToolBar.swift in Sources */,
 				8413C833211ADD4D006078C5 /* XZCommon.swift in Sources */,
+				84DADC4121216F34005BCAD8 /* XZVoiceRecorderManager.swift in Sources */,
+				84DADC3E21216F18005BCAD8 /* XZVoicePlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
