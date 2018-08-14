@@ -23,6 +23,11 @@ class XZChatViewController: UIViewController {
 
 /// XZChatToolBarDelegate, XZKeyboardInputViewDelegate
 extension XZChatViewController:XZChatToolBarDelegate,XZKeyboardInputViewDelegate {
+    /// 录音成功的回调
+    func didStopRecordingVoice(mediaModel: XZMediaModel) {
+       print("录音成功，获取model ----- 上传服务器")
+    }
+    
     /// 点击"发送"和 "转人工"
     func chatToolBarDidSelectedBtn(btnTag: Int, text: String) {
         if btnTag == 121 { // 转人工

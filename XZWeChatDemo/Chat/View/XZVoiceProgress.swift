@@ -85,13 +85,13 @@ class XZVoiceProgress: UIView {
             for subview  in subviews {
                 if hiddenProgress { // 隐藏
                     subview.isHidden = true
+                    
+                    time = nil
+                    progress = 0
                 }else { // 显示
                     subview.isHidden = false
                 }
             }
-            
-            time = nil
-            progress = 0
         }
     }
     
@@ -100,6 +100,8 @@ class XZVoiceProgress: UIView {
         self.voiceRecordState = .normal
         
         super.init(frame: frame)
+        
+        setupVoiceProgress()
     }
     
     required init?(coder aDecoder: NSCoder) {

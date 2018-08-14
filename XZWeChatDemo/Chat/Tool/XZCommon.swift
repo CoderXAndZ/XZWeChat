@@ -19,4 +19,6 @@ class XZCommon {
     public static let xz_documentPath = "Chat/document"
     /// 录制音频 - 存储位置
     public static let xz_recorderPath = "Chat/Recorder"
+    /// 录音需要的格式
+    public static let xz_amrType = "amr"
 }

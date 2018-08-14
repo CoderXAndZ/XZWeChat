@@ -16,7 +16,8 @@ import SnapKit
     func xz_keyboardWillChange(noti:Notification)
     /// 修改 toolBar 回调高度
     func xz_toolBarChangeHeight(height: CGFloat)
-    
+    /// 结束录音
+    func didStopRecordingVoice(mediaModel: XZMediaModel)
 }
 
 class XZChatToolBar: UIView {
@@ -25,6 +26,7 @@ class XZChatToolBar: UIView {
     
     /// 开启时间计时器
     @objc func timerReduceOneSecond() {
+        print("开启时间计时器 --- \(totoalSecond)")
         let showCounting = shouldShowCounting()
         
         if totoalSecond == 0 { // 60秒倒计时结束,结束录音
@@ -38,6 +40,7 @@ class XZChatToolBar: UIView {
             return
         }else if showCounting { // 倒计时
             currentState = XZVoiceRecordState.recordCounting
+//            voiceProgress.hiddenProgress = false
             voiceProgress.time = "\(totoalSecond)"
             
             if canceled { // 当前拖拽到 按钮 外
@@ -47,8 +50,9 @@ class XZChatToolBar: UIView {
             }
         }else { // 正常显示声音
             if currentState != XZVoiceRecordState.releaseToCancel {
-                // ==========
-//                voiceProgress.progress = XZVoiceRecorderManager.sharedManager.powerChanged
+//                voiceProgress.hiddenProgress = false
+                voiceProgress.progress = manager.powerChanged()
+                print("正常显示声音",voiceProgress.progress)
             }
         }
         totoalSecond = totoalSecond - 1
@@ -85,14 +89,11 @@ class XZChatToolBar: UIView {
                 makeKeyboardInputViewConstraints(hidden: false)
                 break
             case 121: // 转人工
-                btnTurnArtifical.isHidden = true
-                btnVoice.isHidden = false
-                
                 delegate?.chatToolBarDidSelectedBtn(btnTag: button.tag,text: "")
                 break
             case 122: // + 按钮
                 button.isSelected = !button.isSelected
-                
+                // 回收键盘
                 textView.resignFirstResponder()
                 
                 // 显示输入框
@@ -119,10 +120,19 @@ class XZChatToolBar: UIView {
     
     /// 开始录音
     @objc func speakerTouchDown() {
+        stopTimer()
         
+        currentState = XZVoiceRecordState.recording
+        updateButtonState(state: currentState)
+        
+        manager.startRecordWithFileName(fileName: XZFileTools.currentRecordFileName()) {
+            print("开始录音回调")
+            // 开启时间计时器
+            self.startTimer()
+        }
     }
     
-    /// 结束录音
+    /// 结束录音 === 松开结束
     @objc func speakerTouchUpInside() {
         if endedRecord {
             return
@@ -140,7 +150,8 @@ class XZChatToolBar: UIView {
         // 取消
         stopTimer()
         
-        // ======
+        manager.cancelCurrentRecording()
+        manager.removeCurrentRecordFile()
         
         currentState = XZVoiceRecordState.normal
         updateButtonState(state: currentState)
@@ -248,6 +259,7 @@ class XZChatToolBar: UIView {
     private var endedRecord: Bool = false
     // 当前状态
     private var currentState = XZVoiceRecordState.normal
+
     /// 底部 + 视图
     var keyboardInputView = XZKeyboardInputView(frame: CGRect.zero)
     /// 录音提示页面
@@ -258,6 +270,8 @@ class XZChatToolBar: UIView {
     private let minRecordDuration = 1.0 // 最短录音时间
     private let maxRecordDuration = 60 // 最长录音时间
     private let remainCountingDuration = 10 // 剩余多少秒开始倒计时
+    /// 录音
+    private let manager = XZVoiceRecorderManager.sharedManager
 }
 
 // MARK: - 录音
@@ -265,9 +279,50 @@ extension XZChatToolBar {
     
     /// 停止录制并回调
     func stopRecordAndCallback() {
+        stopTimer()
         
+        if canceled == false { // 不是取消录制调用，是倒计时结束调用
+            manager.delegate = self
+            manager.stopRecordingWithCompletion(completion: { (recordPath) in
+                if recordPath.count > 0 { // 录音完成
+                    let modelVioce = XZMediaModel()
+                    modelVioce.mediaName = self.manager.currentFileName()
+                    modelVioce.mediaType = 0
+                    modelVioce.mediaPath = recordPath
+                    let wavPath = (recordPath as NSString).replacingOccurrences(of: "amr", with: "wav")
+                    let time:TimeInterval = XZFileTools.durationWithVoiceURL(voiceURL: URL(fileURLWithPath: wavPath))
+                    modelVioce.mediaDuration = time
+                    // 录制时间大于1秒才进行发送
+                    if modelVioce.mediaDuration > 1.0 {
+                        self.delegate?.didStopRecordingVoice(mediaModel: modelVioce)
+                    }else { // 录制时间太短
+                        self.manager.isNeedCancelRecording = true
+                        self.manager.removeCurrentRecordFile()
+                        self.currentState = XZVoiceRecordState.recordTooShort
+                        self.updateButtonState(state: self.currentState)
+                    }
+                    print("回调")
+                }
+            })
+            
+            currentState = XZVoiceRecordState.normal
+            updateButtonState(state: currentState)
+        }else { // 取消调用结束
+            manager.cancelCurrentRecording()
+        }
     }
     
+}
+
+// 录音过程中被电话中断
+extension XZChatToolBar: XZVoiceRecorderManagerDelegate {
+    // 录音被打断
+    func audioRecorderInterrupted(tips: String) {
+        // 停止计时器
+        stopTimer()
+        currentState = XZVoiceRecordState.normal
+        updateButtonState(state: currentState)
+    }
 }
 
 // MARK: - 时间计时器
@@ -279,9 +334,10 @@ extension XZChatToolBar {
         }
         return false
     }
-   
+    
+    /// 开启时间计时器
     func startTimer() {
-        timerReduce = Timer(timeInterval: minRecordDuration, target: self, selector: #selector(timerReduceOneSecond), userInfo: nil, repeats: true)
+        timerReduce = Timer.scheduledTimer(timeInterval: minRecordDuration, target: self, selector: #selector(timerReduceOneSecond), userInfo: nil, repeats: true)
     }
     
     /// 关闭计时器
@@ -294,6 +350,7 @@ extension XZChatToolBar {
         totoalSecond = maxRecordDuration
         canceled = false
         endedRecord = false
+        manager.delegate = nil
     }
     
 }
@@ -411,6 +468,7 @@ extension XZChatToolBar {
     
     /// 更新按钮状态
     func updateButtonState(state: XZVoiceRecordState) {
+        
         if state == XZVoiceRecordState.normal {
             
             setBtnSpeakHighlighted(value: 2)
@@ -448,15 +506,21 @@ extension XZChatToolBar {
     
     /// 设置button的高亮 === YES 高亮 NO 不高亮
     func setBtnSpeakHighlighted(value: Int) {
-        if value == 1 { // 1 长按状态
-            btnSpeak.setBackgroundImage(highlightedImage, for: .normal)
-            btnSpeak.setTitle("松开 结束", for: .normal)
-        }else if value == 2 {  // 2 正常状态
-            btnSpeak.setBackgroundImage(btnSpeakImg, for: .normal)
-            btnSpeak.setTitle("按住 说话", for: .normal)
-        }else { // 3 高亮状态
-            btnSpeak.setBackgroundImage(btnSpeakImg, for: .highlighted)
-            btnSpeak.setTitle("按住 说话", for: .highlighted)
+        switch value {
+            case 1: // 1 长按状态
+                btnSpeak.setBackgroundImage(highlightedImage, for: .normal)
+                btnSpeak.setTitle("松开 结束", for: .normal)
+                break
+            case 2: // 2 正常状态
+                btnSpeak.setBackgroundImage(btnSpeakImg, for: .normal)
+                btnSpeak.setTitle("按住 说话", for: .normal)
+                break
+            case 3: // 3 高亮状态
+                btnSpeak.setBackgroundImage(btnSpeakImg, for: .highlighted)
+                btnSpeak.setTitle("按住 说话", for: .highlighted)
+                break
+            default:
+                break
         }
     }
     
@@ -471,7 +535,7 @@ extension XZChatToolBar {
         
         // 顶部工具栏
         addSubview(topView)
-        topView.backgroundColor = UIColor.green
+        topView.backgroundColor = UIColor.white
         
         // 底部 + 视图
         addSubview(keyboardInputView)
@@ -573,7 +637,9 @@ extension XZChatToolBar {
         btnSendMsg.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
         btnSendMsg.addTarget(self, action: #selector(didClickVoiceButton), for: .touchUpInside)
         
+        barSuperView.addSubview(voiceProgress)
         voiceProgress.center = CGPoint(x: barSuperView.center.x, y: barSuperView.center.y)
+//        voiceProgress.backgroundColor = UIColor.red
         voiceProgress.hiddenProgress = true
         
         setupConstraints()

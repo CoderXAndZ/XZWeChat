@@ -12,7 +12,7 @@ import AVFoundation
 class XZFileTools {
     
     /// 缓存路径
-    func getAppCacheDirectory() -> String {
+    class func getAppCacheDirectory() -> String {
         guard let cachesDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).last else {
             return ""
         }
@@ -27,19 +27,19 @@ class XZFileTools {
     }
     
     /// 当前录音的时间作为文件名使用
-    func currentRecordFileName() -> String {
+    class func currentRecordFileName() -> String {
         let uuid = generateUUID()
         
         return  "\(uuid).wav"
     }
     
     /// 生成 UUID
-    func generateUUID() -> String {
+    class func generateUUID() -> String {
         return UUID.init().uuidString
     }
     
     /// 获取语音时长
-    func durationWithVoiceURL(voiceURL: URL) -> TimeInterval {
+    class func durationWithVoiceURL(voiceURL: URL) -> TimeInterval {
         let opt = [AVURLAssetPreferPreciseDurationAndTimingKey:false]
         // 初始化媒体文件
         let audioAsset = AVURLAsset.init(url: voiceURL, options: opt)
@@ -50,7 +50,7 @@ class XZFileTools {
     }
     
     /// 根据路径获取文件
-    func getAllDocumentFromFile() -> Array<Any> {
+    class func getAllDocumentFromFile() -> Array<Any> {
         let manager = FileManager.default
         guard let array =  try? manager.contentsOfDirectory(atPath: mainPathOfDocuments()) else {
             return []
@@ -75,13 +75,14 @@ class XZFileTools {
     }
     
     /// 录音文件路径
-    func recoderPathWithFileName(fileName: String) -> String {
+    class func recoderPathWithFileName(fileName: String) -> String {
         let mainPath = mainPathOfDocuments() as NSString
-        return mainPath.appendingPathComponent(fileName)
+        let path = mainPath.appendingPathComponent(fileName)
+        return path
     }
     
     /// 录音文件主路径
-    func mainPathOfRecorder() -> String {
+    class func mainPathOfRecorder() -> String {
         let path = (getAppCacheDirectory() as NSString).appendingPathComponent(XZCommon.xz_recorderPath)
         
         let manager = FileManager.default
@@ -94,7 +95,7 @@ class XZFileTools {
     }
     
     /// 获取后缀
-    func getTheSuffix(fileName: String) -> String {
+    class func getTheSuffix(fileName: String) -> String {
         let array = fileName.components(separatedBy: ".")
         let suffix = array.last
         
@@ -102,17 +103,17 @@ class XZFileTools {
     }
     
     /// 判断文件是否存在
-    func fileExistsAtPath(path: String) -> Bool {
+    class func fileExistsAtPath(path: String) -> Bool {
         return FileManager.default.fileExists(atPath: path)
     }
     
     /// 移除 path 路径下的文件
-    func removeFileAtPath(path: String) -> Bool {
+    class func removeFileAtPath(path: String) -> Bool {
         return ((try? FileManager.default.removeItem(atPath: path)) != nil)
     }
     
     /// 某个路径下的文件大小字符串值 小于1024显示KB，否则显示MB
-    func fileSize(path: String) -> String {
+    class func fileSize(path: String) -> String {
         let size = fileSizeWithPath(path: path)
         
         if size > 1024 {
@@ -123,7 +124,7 @@ class XZFileTools {
     }
     
     ///  返回字节 == 文件大小的字节值
-    func fileSizeWithPath(path: String) -> CGFloat {
+    class func fileSizeWithPath(path: String) -> CGFloat {
         if fileExistsAtPath(path: path) {
             guard let fileAttributes =  try? FileManager.default.attributesOfItem(atPath: path) else {
                 return 0.0
@@ -134,7 +135,7 @@ class XZFileTools {
     }
     
     /// 文件路径
-    func documentPathWithName(name: String) -> String {
+    class func documentPathWithName(name: String) -> String {
         let docPath = mainPathOfDocuments()
         let documentPath = (docPath as NSString).appendingPathComponent(name)
         
@@ -142,7 +143,7 @@ class XZFileTools {
     }
     
     /// 文件夹路径
-    func mainPathOfDocuments() -> String {
+    class func mainPathOfDocuments() -> String {
         
         let path = getAppCacheDirectory() + XZCommon.xz_documentPath
         
