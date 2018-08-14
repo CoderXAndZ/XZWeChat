@@ -40,7 +40,6 @@ class XZChatToolBar: UIView {
             return
         }else if showCounting { // 倒计时
             currentState = XZVoiceRecordState.recordCounting
-//            voiceProgress.hiddenProgress = false
             voiceProgress.time = "\(totoalSecond)"
             
             if canceled { // 当前拖拽到 按钮 外
@@ -50,7 +49,6 @@ class XZChatToolBar: UIView {
             }
         }else { // 正常显示声音
             if currentState != XZVoiceRecordState.releaseToCancel {
-//                voiceProgress.hiddenProgress = false
                 voiceProgress.progress = manager.powerChanged()
                 print("正常显示声音",voiceProgress.progress)
             }
@@ -109,7 +107,6 @@ class XZChatToolBar: UIView {
                 delegate?.chatToolBarDidSelectedBtn(btnTag: button.tag, text: textView.text)
                 // 清空输入框
                 textView.text = ""
-//                textUserInput = ""
                 // 发送通知
                 NotificationCenter.default.post(name: NSNotification.Name.UITextViewTextDidChange, object: textView)
                 break
@@ -132,7 +129,7 @@ class XZChatToolBar: UIView {
         }
     }
     
-    /// 结束录音 === 松开结束
+    /// 结束录音 -> 松开结束
     @objc func speakerTouchUpInside() {
         if endedRecord {
             return
@@ -227,19 +224,19 @@ class XZChatToolBar: UIView {
     }
     
     /// 输入框
-    private var textView = XZTextView(frame: .zero)
+    private let textView = XZTextView(frame: .zero)
     /// 顶部试图
-    private var topView = UIView()
+    private let topView = UIView()
     /// 语音聊天按钮
-    private var btnVoice = UIButton(type: .custom)
+    private let btnVoice = UIButton(type: .custom)
     /// 按住说话按钮,默认隐藏
-    private var btnSpeak = UIButton(type: .custom)
+    private let btnSpeak = UIButton(type: .custom)
     /// 发送按钮
-    private var btnSendMsg = UIButton(type: .custom)
+    private let btnSendMsg = UIButton(type: .custom)
     /// 加号按钮
-    private var btnContactAdd = UIButton(type: .custom)
+    private let btnContactAdd = UIButton(type: .custom)
     /// 转人工
-    private var btnTurnArtifical = XZButton(type: .custom)
+    private let btnTurnArtifical = XZButton(type: .custom)
     /// 父视图
     private var barSuperView: UIView!
     /// 当前文字高度
@@ -263,7 +260,7 @@ class XZChatToolBar: UIView {
     /// 底部 + 视图
     var keyboardInputView = XZKeyboardInputView(frame: CGRect.zero)
     /// 录音提示页面
-    private var voiceProgress = XZVoiceProgress(frame: CGRect(x: 0, y: 0, width: 155, height: 155))
+    private let voiceProgress = XZVoiceProgress(frame: CGRect(x: 0, y: 0, width: 155, height: 155))
     private let toolBarBtnH: CGFloat = 35.0 // 顶部工具栏按钮和输入框初始高度
     private let toolBarBottom: CGFloat = 100.0 // 底部视图
     private let btnSpeakLeftX: CGFloat = 55.0 // 按住说话左边距

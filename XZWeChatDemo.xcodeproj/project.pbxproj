@@ -13,7 +13,6 @@
 		8413C80E211A81F0006078C5 /* XZWeChatDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C80D211A81F0006078C5 /* XZWeChatDemoTests.swift */; };
 		8413C819211A8A2B006078C5 /* XZChatToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C818211A8A2B006078C5 /* XZChatToolBar.swift */; };
 		8413C81A211A8A2B006078C5 /* XZChatToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C818211A8A2B006078C5 /* XZChatToolBar.swift */; };
-		8413C820211A9CCF006078C5 /* Pods_XZWeChatDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8413C821211A9CCF006078C5 /* Pods_XZWeChatDemo.framework */; };
 		8413C823211A9EA7006078C5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C822211A9EA7006078C5 /* UIColor+Extension.swift */; };
 		8413C824211A9EA7006078C5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C822211A9EA7006078C5 /* UIColor+Extension.swift */; };
 		8413C826211A9FC9006078C5 /* XZKeyboardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C825211A9FC9006078C5 /* XZKeyboardInputView.swift */; };
@@ -26,6 +25,7 @@
 		8413C839211AE4CD006078C5 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8413C837211AE4CD006078C5 /* UIImage+Extension.swift */; };
 		84310341211C281500E1FE29 /* XZTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84310340211C281500E1FE29 /* XZTextView.swift */; };
 		84310342211C281500E1FE29 /* XZTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84310340211C281500E1FE29 /* XZTextView.swift */; };
+		844210AC2122D90A001FD113 /* Pods_XZWeChatDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844210AD2122D90A001FD113 /* Pods_XZWeChatDemo.framework */; };
 		84DADC3121213376005BCAD8 /* XZVoiceProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3021213376005BCAD8 /* XZVoiceProgress.swift */; };
 		84DADC3221213376005BCAD8 /* XZVoiceProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3021213376005BCAD8 /* XZVoiceProgress.swift */; };
 		84DADC3421216D8C005BCAD8 /* XZDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DADC3321216D8C005BCAD8 /* XZDownloadManager.swift */; };
@@ -72,6 +72,7 @@
 		8413C831211ADD4D006078C5 /* XZCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZCommon.swift; sourceTree = "<group>"; };
 		8413C837211AE4CD006078C5 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		84310340211C281500E1FE29 /* XZTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XZTextView.swift; sourceTree = "<group>"; };
+		844210AD2122D90A001FD113 /* Pods_XZWeChatDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_XZWeChatDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DADC3021213376005BCAD8 /* XZVoiceProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZVoiceProgress.swift; sourceTree = "<group>"; };
 		84DADC3321216D8C005BCAD8 /* XZDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZDownloadManager.swift; sourceTree = "<group>"; };
 		84DADC3621216ECD005BCAD8 /* XZFileTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XZFileTools.swift; sourceTree = "<group>"; };
@@ -87,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8413C820211A9CCF006078C5 /* Pods_XZWeChatDemo.framework in Frameworks */,
+				844210AC2122D90A001FD113 /* Pods_XZWeChatDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +207,7 @@
 		96501EA03481C5A1C5442DAD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				844210AD2122D90A001FD113 /* Pods_XZWeChatDemo.framework */,
 				8413C821211A9CCF006078C5 /* Pods_XZWeChatDemo.framework */,
 				8413C81F211A9A4B006078C5 /* Pods_XZWeChatDemo.framework */,
 				23603176FC6AD45AA6475B70 /* Pods_XZWeChatDemo.framework */,
@@ -347,10 +349,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-XZWeChatDemo/Pods-XZWeChatDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/TSVoiceConverter/TSVoiceConverter.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TSVoiceConverter.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

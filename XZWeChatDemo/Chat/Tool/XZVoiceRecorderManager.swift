@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import TSVoiceConverter
 
 @objc protocol XZVoiceRecorderManagerDelegate: NSObjectProtocol {
     /// 录制被中断，录制过程中来电话
@@ -157,16 +158,18 @@ extension XZVoiceRecorderManager: AVAudioRecorderDelegate {
             return
         }
         
-        let recordPath = (audioRecorder.url.path as NSString).deletingPathExtension
+        let recordPath = audioRecorder.url.path
+        
+        let path = (recordPath as NSString).deletingPathExtension
         
         // 音频格式转换
-        let amrPath = (recordPath as NSString).appendingPathExtension(XZCommon.xz_amrType)
-        // ====== wav 转化成 amr
-//        [VoiceConverter ConvertWavToAmr:recordPath amrSavePath:amrPath];
+        let amrPath = (path as NSString).appendingPathExtension(XZCommon.xz_amrType)
         
         guard let amrPathFinal = amrPath else {
             return
         }
+        // wav 转化成 amr
+        _ = TSVoiceConverter.convertWavToAmr(recordPath, amrSavePath: amrPathFinal)
         
         recorderFinish?(amrPathFinal)
         
@@ -179,8 +182,6 @@ extension XZVoiceRecorderManager: AVAudioRecorderDelegate {
         self.audioRecorder = nil
         
         recorderFinish = nil
-        //    // 移除.wav原文件 ============= 删除
-        //    [self removeCurrentRecordFile:self.currentFileName];
     }
     
     // 录制过程中造成录音中断

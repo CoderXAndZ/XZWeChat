@@ -25,7 +25,9 @@ class XZChatViewController: UIViewController {
 extension XZChatViewController:XZChatToolBarDelegate,XZKeyboardInputViewDelegate {
     /// 录音成功的回调
     func didStopRecordingVoice(mediaModel: XZMediaModel) {
-       print("录音成功，获取model ----- 上传服务器")
+        print("录音成功，获取model ----- 上传服务器")
+        // 上传成功，移除 amr 的录音
+        XZVoiceRecorderManager.sharedManager.removeCurrentRecordFile()
     }
     
     /// 点击"发送"和 "转人工"

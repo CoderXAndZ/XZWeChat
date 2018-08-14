@@ -1,16 +1,20 @@
 PODS:
   - SnapKit (4.0.0)
+  - TSVoiceConverter (0.1.6)
 
 DEPENDENCIES:
   - SnapKit
+  - TSVoiceConverter (~> 0.1.6)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - SnapKit
+    - TSVoiceConverter
 
 SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  TSVoiceConverter: 4143689b2b5df5fecedf9420bf7ce6fd4c98746c
 
-PODFILE CHECKSUM: 821a88104d37b5b94313d6523c432bb093f92318
+PODFILE CHECKSUM: 940b651e427fe41c65b5368c7c34dadc15b76aff
 
 COCOAPODS: 1.5.0

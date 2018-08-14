@@ -11,8 +11,8 @@ import UIKit
 class XZCommon {
     
     /// 屏幕宽高
-    public static let xz_screenWidth: CGFloat = UIScreen.main.bounds.width
-    public static let xz_screenHeight: CGFloat = UIScreen.main.bounds.height
+    public static let xz_screenWidth = UIScreen.main.bounds.width
+    public static let xz_screenHeight = UIScreen.main.bounds.height
     /// 聊天界面工具栏高度
     public static let xz_chatToolBarHeight: CGFloat = 55
     /// 文件路径

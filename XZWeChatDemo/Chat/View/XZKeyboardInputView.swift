@@ -62,9 +62,6 @@ class XZKeyboardInputView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    // 点击事件回调
-//    public var buttonClickBlock:((_ buttonTag: NSInteger)->())?
-    
     // 按钮和图片数据
     private lazy var arrButton:[[String:String]] = []
 //    private lazy var arrButton = [Dictionary]()

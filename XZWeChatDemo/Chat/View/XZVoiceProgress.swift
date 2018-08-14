@@ -109,11 +109,11 @@ class XZVoiceProgress: UIView {
     }
     
     /// 显示静态图片
-    private var imageView = UIImageView()
+    private let imageView = UIImageView()
     /// 显示动画
-    private var imageAnimationView = UIImageView()
+    private let imageAnimationView = UIImageView()
     /// 动画图片数据
-    private var images: NSArray = [
+    private let images: NSArray = [
         UIImage.init(named: "voice_1")!,
         UIImage.init(named: "voice_2")!,
         UIImage.init(named: "voice_3")!,
@@ -121,9 +121,9 @@ class XZVoiceProgress: UIView {
         UIImage.init(named: "voice_5")!,
         UIImage.init(named: "voice_6")!]
     /// 提示
-    private var labelTip = UILabel()
+    private let labelTip = UILabel()
     /// 时间倒计时
-    private var labelTime = UILabel()
+    private let labelTime = UILabel()
 }
 
 // 设置页面

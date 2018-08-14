@@ -134,9 +134,9 @@ class XZTextView: UITextView {
     /// 最大高度
     private var maxHeight: CGFloat = 0
     /// 左侧图片视图
-    private lazy var imageView = UIImageView()
+    private let imageView = UIImageView()
     /// 左侧图片
-    private lazy var image = UIImage.init(named: "表盘")
+    private let image = UIImage.init(named: "表盘")
     /// 占位字符视图
     private let placeHolderView = UILabel()
     
