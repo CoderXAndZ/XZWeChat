@@ -182,7 +182,7 @@ extension XZTextView {
         showsHorizontalScrollIndicator = false
         enablesReturnKeyAutomatically = true
         layer.borderWidth = 1
-        layer.borderColor = UIColor.lightGray.cgColor
+        layer.borderColor = UIColor(redC: 222, greenC: 222, blueC: 222).cgColor
         
         // 设置默认的字体大小
         fontSize = 17.0

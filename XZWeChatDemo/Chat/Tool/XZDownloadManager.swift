@@ -16,7 +16,7 @@ class XZDownloadManager {
      *      url:            下载完的文件存放地址
      *      progressValue : 下载的进度
      */
-    func downloadAudioWithURL(urlStr: String,completion: @escaping (_ url:NSURL,_ progressValue:CGFloat,_ amrPath:String)->()) {
+   class func downloadAudioWithURL(urlStr: String,completion: @escaping (_ url:NSURL,_ progressValue:CGFloat,_ amrPath:String)->()) {
         
     }
     

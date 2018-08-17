@@ -17,6 +17,8 @@ class XZChatViewController: UIViewController {
         toolBar.delegate = self
         toolBar.keyboardInputView.delegate = self
     }
+    
+//    private lazy var tableView = UITableView(
 
     private lazy var toolBar = XZChatToolBar(frame: CGRect(x: 0, y: XZCommon.xz_screenHeight - 55, width: XZCommon.xz_screenWidth, height: 155), barSuperView: view)
 }

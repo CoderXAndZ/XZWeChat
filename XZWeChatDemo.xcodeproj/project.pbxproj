@@ -106,8 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				8413C7F7211A81F0006078C5 /* XZWeChatDemo */,
-				8413C80C211A81F0006078C5 /* XZWeChatDemoTests */,
 				8413C7F6211A81F0006078C5 /* Products */,
+				8413C80C211A81F0006078C5 /* XZWeChatDemoTests */,
 				A1774DF41DA459CAFB2A88DD /* Pods */,
 				96501EA03481C5A1C5442DAD /* Frameworks */,
 			);
